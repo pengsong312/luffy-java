@@ -1,5 +1,13 @@
 package com.luffy.java.basic;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import java.util.List;
+
 /**
  * @author Luffy
  * @date 2018/7/2
@@ -11,33 +19,53 @@ public class EqualsDemo {
         EqualsDemo equalsDemo = new EqualsDemo();
         equalsDemo.equals2Demo();
         equalsDemo.equalsDemo();
+
+        // 校验Long数据
+        String strArray = "[10004218,1110,1.0004218E7,13123.12]";
+        List longArray = new Gson().fromJson(strArray, List.class);
+        longArray.forEach((number) -> {
+            System.out.println("longArray:" + number);
+            System.out.println("longArray:" + number.getClass().getName());
+
+        });
+        System.out.println(longArray.contains(Double.valueOf(10004218)));
+
+        List intArray = JSONObject.parseObject(strArray, List.class);
+        intArray.forEach((number) -> {
+            System.out.println("intArray:" + number);
+            System.out.println("intArray 转变后的元素类型" + number.getClass().getName());
+        });
+        System.out.println(intArray.contains(10004218));
+        List<Integer> list = Lists.newArrayList(10004218, 1110);
+
     }
 
-    /** 判断 equals 的操作:
+    /**
+     * 判断 equals 的操作:
      * equals用来比较的是两个对象的内容是否相等，由于所有的类都是继承自java.lang.Object类的，所以适用于所有对象，
      * 如果没有对该方法进行覆盖的话，调用的仍然是Object类中的方法，而Object中的equals方法返回的却是==的判断。
-     *  **/
-    public void equalsDemo(){
+     **/
+    public void equalsDemo() {
         // 基本类型
         int upHundred = 128;
         // false 类型不匹配 "128" 字符串 upHundred是数值
-        System.out.println("equalsDemo:"+"128".equals(upHundred));
+        System.out.println("equalsDemo:" + "128".equals(upHundred));
         // true 比较是128中堆内存中的值
-        System.out.println("equalsDemo:"+"128".equals(String.valueOf(upHundred)));
+        System.out.println("equalsDemo:" + "128".equals(String.valueOf(upHundred)));
 
         String str1 = "abc";
         String str2 = new String("abc");
 
-        System.out.println("equalsDemo:"+str1.equals("abc"));
-        System.out.println("equalsDemo:"+str1.equals(str2));
+        System.out.println("equalsDemo:" + str1.equals("abc"));
+        System.out.println("equalsDemo:" + str1.equals(str2));
     }
 
     /**
      * 判断 == 的操作:
      * 比较的是变量(栈)内存中存放的对象的(堆)内存地址，用来判断两个对象的地址是否相同，
      * 即是否是指相同一个对象。比较的是真正意义上的指针操作。
-     * **/
-    public void equals2Demo(){
+     **/
+    public void equals2Demo() {
         /********************
          * (1)基本类型比较：
          * byte char short int float double long boolean

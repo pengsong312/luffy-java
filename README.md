@@ -1,1 +1,2 @@
-# luffy-java
+# basic
+Java JDK基础部分
