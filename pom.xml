@@ -12,6 +12,7 @@
         <module>basic</module>
         <module>junit</module>
         <module>spring-boot</module>
+        <module>rate-limiter</module>
     </modules>
 
     <dependencies>
