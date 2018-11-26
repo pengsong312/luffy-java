@@ -13,6 +13,8 @@
         <module>junit</module>
         <module>spring-boot</module>
         <module>rate-limiter</module>
+      <module>serialize</module>
+      <module>redisson</module>
     </modules>
 
     <dependencies>
